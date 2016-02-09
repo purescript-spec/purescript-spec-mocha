@@ -5,6 +5,9 @@ purescript-spec-reporter-mocha is a reporter for
 the test results using the Mocha interface (`describe`, `it` etc). This enables
 you to use purescript-spec together with `mocha` and `karma`.
 
+**Note that this reporter currently only works with synchronous tests!** Sorry
+about that!
+
 ## Usage
 
 ```bash
