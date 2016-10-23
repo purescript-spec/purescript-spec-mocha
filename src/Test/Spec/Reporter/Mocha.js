@@ -6,22 +6,19 @@ if (!describe || !it) {
   throw new Error('Mocha globals seem to be unavailable!');
 }
 
-exports.itSuccess = function (name) {
+exports.itAsync = function (name) {
   "use strict";
-  return function () {
-    it(name, function () {});
-  };
-};
-
-exports.itFailure = function (name) {
-  "use strict";
-  return function (err) {
-    return function () {
-      it(name, function () {
-        throw err;
-      });
+    return function (aff) {
+        return function () {
+            it(name, function (done) {
+                aff(function () {
+                    done();
+                }, function (err) {
+                    done(err);
+                })
+            });
+        };
     };
-  };
 };
 
 exports.itPending = function (name) {
