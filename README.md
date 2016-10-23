@@ -1,17 +1,14 @@
-# purescript-spec-reporter-mocha
+# purescript-spec-mocha
 
-purescript-spec-reporter-mocha is a reporter for
-[purescript-spec](https://github.com/owickstrom/purescript-spec) that reports
-the test results using the Mocha interface (`describe`, `it` etc). This enables
-you to use purescript-spec together with `mocha` and `karma`.
-
-**Note that this reporter currently only works with synchronous tests!** Sorry
-about that!
+purescript-spec-mocha is a runner and reporter for
+[purescript-spec](https://github.com/owickstrom/purescript-spec) that run tests
+and reports the results using the Mocha interface (`describe`, `it` etc). This
+enables you to use purescript-spec together with `mocha` and `karma`.
 
 ## Usage
 
 ```bash
-bower install purescript-spec-reporter-mocha
+bower install purescript-spec-mocha
 ```
 
 ```purescript
@@ -19,11 +16,11 @@ module Main where
 
 import Prelude
 
-import Test.Spec
-import Test.Spec.Runner
-import Test.Spec.Reporter.Mocha
+import Test.Spec                (describe, it, pending)
+import Test.Spec.Assertions     (shouldEqual)
+import Test.Spec.Mocha          (runMocha)
 
-main = run [mochaReporter] do
+main = runMocha do
   ...
 ```
 
@@ -37,18 +34,12 @@ mocha bundle.js
 
 ## API Documentation
 
-See [the docs directory](docs/).
-
-### Generating Docs
-
-```bash
-pulp docs
-```
+See [docs on Pursuit](https://pursuit.purescript.org/packages/purescript-spec-mocha).
 
 ## Contribute
 
 If you have any issues or possible improvements please file them as
-[GitHub Issues](https://github.com/owickstrom/purescript-spec-reporter-mocha/issues).
+[GitHub Issues](https://github.com/owickstrom/purescript-spec-mocha/issues).
 Pull requests requests are encouraged.
 
 ## License

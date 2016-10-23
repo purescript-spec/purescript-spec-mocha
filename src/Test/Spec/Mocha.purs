@@ -1,4 +1,4 @@
-module Test.Spec.Reporter.Mocha (
+module Test.Spec.Mocha (
   runMocha,
   MOCHA()
   ) where
@@ -7,12 +7,10 @@ import Prelude
 
 import Control.Monad.Aff           (Aff())
 import Control.Monad.Eff           (Eff())
-import Control.Monad.Eff.Exception (Error())
 
 import Data.Foldable               (traverse_)
 
 import Test.Spec                   (Spec, Group(..), collect)
-import Test.Spec.Reporter          (Reporter())
 
 foreign import data MOCHA :: !
 

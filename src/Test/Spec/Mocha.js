@@ -1,13 +1,13 @@
 /* global exports, it */
 
-// module Test.Spec.Reporter.Mocha
+// module Test.Spec.Mocha
 
 if (!describe || !it) {
-  throw new Error('Mocha globals seem to be unavailable!');
+    throw new Error('Mocha globals seem to be unavailable!');
 }
 
 exports.itAsync = function (name) {
-  "use strict";
+    "use strict";
     return function (aff) {
         return function () {
             it(name, function (done) {
@@ -22,19 +22,19 @@ exports.itAsync = function (name) {
 };
 
 exports.itPending = function (name) {
-  "use strict";
-  return function () {
-    it(name);
-  };
+    "use strict";
+    return function () {
+        it(name);
+    };
 };
 
 exports.describe = function (name) {
-  "use strict";
-  return function (nested) {
-    return function () {
-      describe(name, function () {
-        nested();
-      });
+    "use strict";
+    return function (nested) {
+        return function () {
+            describe(name, function () {
+                nested();
+            });
+        };
     };
-  };
 };

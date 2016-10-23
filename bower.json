@@ -1,10 +1,10 @@
 {
-  "name": "purescript-spec-reporter-mocha",
-  "version": "0.1.0",
+  "name": "purescript-spec-mocha",
+  "version": "0.2.0",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/owickstrom/purescript-spec-reporter-mocha.git"
+    "url": "git://github.com/owickstrom/purescript-spec-mocha.git"
   },
   "moduleType": [
     "node"
@@ -19,6 +19,6 @@
     "purescript-console": "^2.0.0",
     "purescript-foldable-traversable": "^2.0.0",
     "purescript-exceptions": "~2.0.0",
-    "purescript-spec": "^0.9.1"
+    "purescript-spec": "^0.10.0"
   }
 }

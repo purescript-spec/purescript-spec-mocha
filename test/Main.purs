@@ -6,7 +6,7 @@ import Control.Monad.Aff (later')
 
 import Test.Spec (describe, it, pending)
 import Test.Spec.Assertions (shouldEqual)
-import Test.Spec.Reporter.Mocha (runMocha)
+import Test.Spec.Mocha (runMocha)
 
 main = runMocha do
   describe "test" $
