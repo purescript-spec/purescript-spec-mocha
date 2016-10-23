@@ -2,6 +2,10 @@
   "name": "purescript-spec-reporter-mocha",
   "version": "0.1.0",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/owickstrom/purescript-spec-reporter-mocha.git"
+  },
   "moduleType": [
     "node"
   ],
