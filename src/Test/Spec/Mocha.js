@@ -2,21 +2,24 @@
 
 // module Test.Spec.Mocha
 
-if (!describe || !it) {
+if (typeof describe !== 'function' || typeof it !== 'function') {
     throw new Error('Mocha globals seem to be unavailable!');
 }
 
-exports.itAsync = function (name) {
+exports.itAsync = function (only) {
     "use strict";
-    return function (aff) {
-        return function () {
-            it(name, function (done) {
-                aff(function () {
-                    done();
-                }, function (err) {
-                    done(err);
-                })
-            });
+    return function (name) {
+        return function (aff) {
+            return function () {
+                var f = only ? it.only : it;
+                f(name, function (done) {
+                    aff(function () {
+                        done();
+                    }, function (err) {
+                        done(err);
+                    });
+                });
+            };
         };
     };
 };
@@ -28,13 +31,16 @@ exports.itPending = function (name) {
     };
 };
 
-exports.describe = function (name) {
+exports.describe = function (only) {
     "use strict";
-    return function (nested) {
-        return function () {
-            describe(name, function () {
-                nested();
-            });
+    return function (name) {
+        return function (nested) {
+            return function () {
+                var f = only ? describe : describe.only;
+                f(name, function () {
+                    nested();
+                });
+            };
         };
     };
 };

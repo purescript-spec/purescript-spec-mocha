@@ -1,13 +1,13 @@
 module Test.Main where
 
 import Prelude
-
 import Control.Monad.Aff (later')
-
-import Test.Spec (describe, it, pending)
+import Control.Monad.Eff (Eff)
+import Test.Spec (SpecEffects, describe, it, pending)
 import Test.Spec.Assertions (shouldEqual)
-import Test.Spec.Mocha (runMocha)
+import Test.Spec.Mocha (MOCHA, runMocha)
 
+main :: Eff (SpecEffects (mocha :: MOCHA)) Unit
 main = runMocha do
   describe "test" $
     describe "nested" do
