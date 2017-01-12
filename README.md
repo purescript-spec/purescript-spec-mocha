@@ -3,7 +3,8 @@
 purescript-spec-mocha is a runner and reporter for
 [purescript-spec](https://github.com/owickstrom/purescript-spec) that run tests
 and reports the results using the Mocha interface (`describe`, `it` etc). This
-enables you to use purescript-spec together with `mocha` and `karma`.
+enables you to use purescript-spec together with `mocha` and `karma`, and thus
+run tests in web browsers, as well as NodeJS.
 
 ## Usage
 
@@ -15,13 +16,16 @@ bower install purescript-spec-mocha
 module Main where
 
 import Prelude
+import Control.Monad.Eff (Eff)
+import Test.Spec (SpecEffects, describe, it)
+import Test.Spec.Assertions (shouldEqual)
+import Test.Spec.Mocha (MOCHA, runMocha)
 
-import Test.Spec                (describe, it, pending)
-import Test.Spec.Assertions     (shouldEqual)
-import Test.Spec.Mocha          (runMocha)
-
+main :: Eff (SpecEffects (mocha :: MOCHA)) Unit
 main = runMocha do
-  ...
+  describe "your feature" do
+    it "works" $
+      (1 + 1) `shouldEqual` 2
 ```
 
 If you bundle your compiled PureScript it can be run with `mocha bundle.js` or
