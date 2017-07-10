@@ -6,13 +6,13 @@ module Test.Spec.Mocha (
 import Prelude
 
 import Control.Monad.Aff           (Aff())
-import Control.Monad.Eff           (Eff())
+import Control.Monad.Eff           (kind Effect, Eff())
 
 import Data.Foldable               (traverse_)
 
 import Test.Spec                   (Spec, Group(..), collect)
 
-foreign import data MOCHA :: !
+foreign import data MOCHA :: Effect
 
 foreign import itAsync :: forall e.
                           Boolean
