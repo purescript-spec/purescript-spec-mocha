@@ -46,6 +46,12 @@ If you have any issues or possible improvements please file them as
 [GitHub Issues](https://github.com/owickstrom/purescript-spec-mocha/issues).
 Pull requests requests are encouraged.
 
+### Running Tests
+
+This project's tests include some failures to test the Mocha
+integration. Thus, use `run_tests.sh` instead of `pulp test` to check
+that everything is all right.
+
 ## License
 
 [MIT License](LICENSE.md).
