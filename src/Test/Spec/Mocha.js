@@ -1,4 +1,4 @@
-/* global exports, it */
+/* global exports, it, describe */
 
 // module Test.Spec.Mocha
 
@@ -9,15 +9,17 @@ if (typeof describe !== 'function' || typeof it !== 'function') {
 exports.itAsync = function (only) {
     "use strict";
     return function (name) {
-        return function (aff) {
+        return function (run) {
             return function () {
                 var f = only ? it.only : it;
                 f(name, function (done) {
-                    aff(function () {
+                    return run(function () {
                         done();
-                    }, function (err) {
+                        return function () {};
+                    })(function (err) {
                         done(err);
-                    });
+                        return function () {};
+                    })();
                 });
             };
         };
@@ -36,7 +38,7 @@ exports.describe = function (only) {
     return function (name) {
         return function (nested) {
             return function () {
-                var f = only ? describe : describe.only;
+                var f = only ? describe.only : describe;
                 f(name, function () {
                     nested();
                 });

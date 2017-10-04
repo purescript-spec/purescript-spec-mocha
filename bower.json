@@ -1,6 +1,5 @@
 {
   "name": "purescript-spec-mocha",
-  "version": "0.2.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -16,7 +15,9 @@
     "output"
   ],
   "dependencies": {
+    "purescript-console": "^3.0.0",
     "purescript-foldable-traversable": "^3.0.0",
-    "purescript-spec": "^1.0.0"
+    "purescript-exceptions": "^3.0.0",
+    "purescript-spec": "^2.0.0"
   }
 }

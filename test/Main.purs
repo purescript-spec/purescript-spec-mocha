@@ -1,8 +1,9 @@
 module Test.Main where
 
 import Prelude
-import Control.Monad.Aff (later')
+import Control.Monad.Aff (delay)
 import Control.Monad.Eff (Eff)
+import Data.Time.Duration (Milliseconds(..))
 import Test.Spec (SpecEffects, describe, it, pending)
 import Test.Spec.Assertions (shouldEqual)
 import Test.Spec.Mocha (MOCHA, runMocha)
@@ -21,8 +22,12 @@ main = runMocha do
 
   describe "async" do
     it "works" $ do
-      expected <- later' 1000 (pure 2)
+      expected <- do
+        delay (Milliseconds 1.0)
+        pure 2
       (1 + 1) `shouldEqual` expected
     it "and can fail" do
-      expected <- later' 1000 (pure 3)
+      expected <- do
+        delay (Milliseconds 1.0)
+        pure 3
       (1 + 1) `shouldEqual` expected
