@@ -28,12 +28,44 @@ main = runMocha do
       (1 + 1) `shouldEqual` 2
 ```
 
+### Usage with bundled Purescript
 If you bundle your compiled PureScript it can be run with `mocha bundle.js` or
 using Karma and [karma-mocha](https://github.com/karma-runner/karma-mocha).
 
 ```bash
 pulp browserify -I test --main Test.Main > bundle.js
 mocha bundle.js
+```
+
+### Usage in the browser
+If you want to mix in Purescript tests with existing Javascript (or
+Coffeescript) Mocha tests running in the browser, you'll need to import the file
+and call the function exported by your Purescript test. E.g. combining the
+example from [Running Mocha in the
+Browser](https://mochajs.org/#running-mocha-in-the-browser) with the above
+Purscript spec, you'll need:
+
+```html
+<!-- test/index.html -->
+...
+  <script>mocha.setup('bdd')</script>
+  <script src="all_tests.js"></script>
+  <script>
+    mocha.checkLeaks();
+    mocha.globals(['jQuery']);
+    mocha.run();
+  </script>
+...
+```
+
+```javascript
+// all_tests.js
+require('test.array.js');               // Javascript specs load when the the file is parsed.
+require('test.object.js');
+require('test.xhr.js');
+
+{main} = require('my_purescript_spec');
+main();                                 // Purescript specs load when the function is called.
 ```
 
 ## API Documentation
