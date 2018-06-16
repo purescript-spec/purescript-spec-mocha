@@ -1,14 +1,14 @@
 module Test.Main where
 
 import Prelude
-import Control.Monad.Aff (delay)
-import Control.Monad.Eff (Eff)
+import Effect.Aff (delay)
+import Effect (Effect)
 import Data.Time.Duration (Milliseconds(..))
-import Test.Spec (SpecEffects, describe, it, pending)
+import Test.Spec (describe, it, pending)
 import Test.Spec.Assertions (shouldEqual)
-import Test.Spec.Mocha (MOCHA, runMocha)
+import Test.Spec.Mocha (runMocha)
 
-main :: Eff (SpecEffects (mocha :: MOCHA)) Unit
+main :: Effect Unit
 main = runMocha do
   describe "test" $
     describe "nested" do
