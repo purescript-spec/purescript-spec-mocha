@@ -4,39 +4,35 @@ module Test.Spec.Mocha (
   ) where
 
 import Prelude
-import Control.Monad.Aff (Aff, Error, runAff_)
-import Control.Monad.Eff (Eff, kind Effect)
+import Effect.Aff (Aff, Error, runAff_)
+import Effect (Effect)
 import Data.Either (either)
 import Data.Foldable (traverse_)
 import Test.Spec (Spec, Group(..), collect)
 
-foreign import data MOCHA :: Effect
+foreign import data MOCHA :: Type
 
 foreign import itAsync
-  :: forall e
-   . Boolean
+  :: Boolean
   -> String
-   -> (Eff e Unit
-       -> (Error -> Eff e Unit)
-       -> Eff e Unit)
-   -> Eff (mocha :: MOCHA | e) Unit
+   -> (Effect Unit
+       -> (Error -> Effect Unit)
+       -> Effect Unit)
+   -> Effect Unit
 
 foreign import itPending
-  :: forall e
-   . String
-   -> Eff (mocha :: MOCHA | e) Unit
+   :: String
+   -> Effect Unit
 
 foreign import describe
-  :: forall e
-   . Boolean
+  :: Boolean
   -> String
-  -> Eff (mocha :: MOCHA | e) Unit
-  -> Eff (mocha :: MOCHA | e) Unit
+  -> Effect Unit
+  -> Effect Unit
 
 registerGroup
-  :: forall e
-   . (Group (Aff e Unit))
-  -> Eff (mocha :: MOCHA | e) Unit
+  :: Group (Aff Unit)
+  -> Effect Unit
 registerGroup (It only name test) =
   itAsync only name cb
   where
@@ -48,6 +44,6 @@ registerGroup (Describe only name groups) =
 
 runMocha
   :: forall e
-   . Spec e Unit
-  -> Eff (mocha :: MOCHA | e) Unit
+   . Spec Unit
+  -> Effect Unit
 runMocha spec = traverse_ registerGroup (collect spec)

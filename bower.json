@@ -15,9 +15,9 @@
     "output"
   ],
   "dependencies": {
-    "purescript-console": "^3.0.0",
-    "purescript-foldable-traversable": "^3.0.0",
-    "purescript-exceptions": "^3.0.0",
-    "purescript-spec": "^2.0.0"
+    "purescript-console": "^4.0.0",
+    "purescript-foldable-traversable": "^4.0.0",
+    "purescript-exceptions": "^4.0.0",
+    "purescript-spec": "^3.0.0"
   }
 }
