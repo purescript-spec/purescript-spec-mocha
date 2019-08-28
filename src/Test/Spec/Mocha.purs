@@ -4,11 +4,14 @@ module Test.Spec.Mocha (
   ) where
 
 import Prelude
-import Effect.Aff (Aff, Error, runAff_)
-import Effect (Effect)
+
 import Data.Either (either)
 import Data.Foldable (traverse_)
-import Test.Spec (Spec, Group(..), collect)
+import Data.Maybe (Maybe(..))
+import Effect (Effect)
+import Effect.Aff (Aff, Error, runAff_)
+import Test.Spec (SpecT, collect)
+import Test.Spec.Tree (Item(..), Tree(..))
 
 foreign import data MOCHA :: Type
 
@@ -31,19 +34,24 @@ foreign import describe
   -> Effect Unit
 
 registerGroup
-  :: Group (Aff Unit)
+  :: ∀ m
+   . Tree m (Item Aff Unit)
   -> Effect Unit
-registerGroup (It only name test) =
-  itAsync only name cb
-  where
-    cb onSuccess onError =
-      runAff_ (either onError (const onSuccess)) test
-registerGroup (Pending name) = itPending name
-registerGroup (Describe only name groups) =
-  describe only name (traverse_ registerGroup groups)
+registerGroup tree =
+  case tree of
+    Leaf name (Just (Item { isFocused, example })) ->
+        itAsync isFocused name cb
+        where
+          cb onSuccess onError =
+            runAff_ (either onError (const onSuccess)) (example (\a -> a unit))
+    Leaf name Nothing ->
+      itPending name
+    Node a t ->
+      traverse_ registerGroup t
 
 runMocha
-  :: forall e
-   . Spec Unit
+  :: ∀ a
+   . SpecT Aff Unit Effect a
   -> Effect Unit
-runMocha spec = traverse_ registerGroup (collect spec)
+runMocha spec =
+   traverse_ registerGroup =<< collect spec
