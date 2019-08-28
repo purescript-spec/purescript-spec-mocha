@@ -18,6 +18,6 @@
     "purescript-console": "^4.0.0",
     "purescript-foldable-traversable": "^4.0.0",
     "purescript-exceptions": "^4.0.0",
-    "purescript-spec": "^3.0.0"
+    "purescript-spec": "^4.0.0"
   }
 }
