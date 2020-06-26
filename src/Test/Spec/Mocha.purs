@@ -5,7 +5,7 @@ module Test.Spec.Mocha (
 
 import Prelude
 
-import Data.Either (either)
+import Data.Either (Either(..), either)
 import Data.Foldable (traverse_)
 import Data.Maybe (Maybe(..))
 import Effect (Effect)
@@ -46,6 +46,9 @@ registerGroup tree =
             runAff_ (either onError (const onSuccess)) (example (\a -> a unit))
     Leaf name Nothing ->
       itPending name
+    Node (Left a) t ->
+      describe false a $
+        traverse_ registerGroup t
     Node a t ->
       traverse_ registerGroup t
 
