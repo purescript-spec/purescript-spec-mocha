@@ -68,6 +68,22 @@ require('test.xhr.js');
 main();                                 // Purescript specs load when the function is called.
 ```
 
+### Usage with Spago and Parcel
+
+With `spago` and `parcel-bundler`, and the above `test/index.html` you can build tests, and run them on node and browsers with the following entries in your `package.json`
+```json
+...
+  "scripts": {
+    "test:build": "spago bundle-app --main Test.Main --to ./output/test.js",
+    "test:watch": "spago bundle-app --watch --main Test.Main --to ./output/test.js --then \"npm run -s test:node\"",
+    "test:node": "mocha ./output/test.js",
+    "test:browser": "parcel test/index.html --open"
+  },
+...
+```
+
+Running `npm run test:watch` in one terminal window and `npm run test:browser` in another will watch purescript source and tests files and automatically run node and browser tests.
+
 ## API Documentation
 
 See [docs on Pursuit](https://pursuit.purescript.org/packages/purescript-spec-mocha).
