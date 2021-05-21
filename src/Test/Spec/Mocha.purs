@@ -1,6 +1,5 @@
 module Test.Spec.Mocha (
-  runMocha,
-  MOCHA()
+  runMocha
   ) where
 
 import Prelude
@@ -12,8 +11,6 @@ import Effect (Effect)
 import Effect.Aff (Aff, Error, runAff_)
 import Test.Spec (SpecT, collect)
 import Test.Spec.Tree (Item(..), Tree(..))
-
-foreign import data MOCHA :: Type
 
 foreign import itAsync
   :: Boolean
