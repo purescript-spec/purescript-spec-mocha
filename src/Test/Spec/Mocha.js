@@ -6,7 +6,7 @@ if (typeof describe !== 'function' || typeof it !== 'function') {
     throw new Error('Mocha globals seem to be unavailable!');
 }
 
-exports.itAsync = function (only) {
+export const mochaItAsync = function (only) {
     "use strict";
     return function (name) {
         return function (run) {
@@ -26,23 +26,9 @@ exports.itAsync = function (only) {
     };
 };
 
-exports.itPending = function (name) {
+export const mochaPending = function (name) {
     "use strict";
     return function () {
         it(name);
-    };
-};
-
-exports.describe = function (only) {
-    "use strict";
-    return function (name) {
-        return function (nested) {
-            return function () {
-                var f = only ? describe.only : describe;
-                f(name, function () {
-                    nested();
-                });
-            };
-        };
     };
 };
