@@ -33,7 +33,7 @@ If you bundle your compiled PureScript it can be run with `mocha bundle.js` or
 using Karma and [karma-mocha](https://github.com/karma-runner/karma-mocha).
 
 ```bash
-spago bundle-module --main Test.Main --to bundle.js
+spago bundle-app --main Test.Main --to bundle.js
 mocha bundle.js
 ```
 
