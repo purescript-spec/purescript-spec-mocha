@@ -2,10 +2,9 @@
 
 set -e
 
-mkdir -p output
-pulp browserify -I test --main Test.Main --to output/bundle.js
+npx spago bundle-app --main Test.Main --to output/bundle.js
 
-$(mocha output/bundle.js > output/test-output.txt) || echo "Checking test output..."
+$(npx mocha output/bundle.js > output/test-output.txt) || echo "Checking test output..."
 
 fail() {
     echo -e "\nTests output:\n"

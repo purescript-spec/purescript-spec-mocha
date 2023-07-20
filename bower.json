@@ -1,23 +1,26 @@
 {
-  "name": "purescript-spec-mocha",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/owickstrom/purescript-spec-mocha.git"
-  },
-  "moduleType": [
-    "node"
-  ],
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "output"
-  ],
-  "dependencies": {
-    "purescript-console": "^4.0.0",
-    "purescript-foldable-traversable": "^4.0.0",
-    "purescript-exceptions": "^4.0.0",
-    "purescript-spec": "^4.0.0"
-  }
+    "name": "purescript-spec-mocha",
+    "license": [
+        "MIT"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/purescript-spec/purescript-spec-mocha"
+    },
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "output"
+    ],
+    "dependencies": {
+        "purescript-aff": "^v7.1.0",
+        "purescript-datetime": "^v6.1.0",
+        "purescript-effect": "^v4.0.0",
+        "purescript-either": "^v6.1.0",
+        "purescript-foldable-traversable": "^v6.0.0",
+        "purescript-maybe": "^v6.0.0",
+        "purescript-prelude": "^v6.0.1",
+        "purescript-spec": "^v7.5.3"
+    }
 }
