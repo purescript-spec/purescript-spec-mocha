@@ -2,12 +2,15 @@
 
 // module Test.Spec.Mocha
 
-if (typeof describe !== "function" || typeof it !== "function") {
-  throw new Error("Mocha globals seem to be unavailable!");
-}
+const checkGlobals = () => {
+  if (typeof describe !== "function" || typeof it !== "function") {
+    throw new Error("Mocha globals seem to be unavailable!");
+  }
+};
 
 export const mochaItAsync = function (only) {
   "use strict";
+  checkGlobals();
   return function (name) {
     return function (run) {
       return function () {
@@ -28,6 +31,7 @@ export const mochaItAsync = function (only) {
 
 export const mochaPending = function (name) {
   "use strict";
+  checkGlobals();
   return function () {
     it(name);
   };
@@ -35,6 +39,7 @@ export const mochaPending = function (name) {
 
 export const mochaDescribe = function (only) {
   "use strict";
+  checkGlobals();
   return function (name) {
     return function (nested) {
       return function () {
