@@ -2,10 +2,10 @@
 
 set -e
 
-npx spago bundle-app --main Test.Main --to output/bundle.js
+npx spago bundle-module --main Test.Main --to output/test_module.js
 
 # need to disable-web-security in chromium to allow cross-origin requests
-npx mocha-headless-chrome -f test/index.html -o output/test-output-headless.txt -a disable-web-security || echo "Checking test output..."
+npx mocha-headless-chrome -f test/index_module.html -o output/test-output-headless.txt -a disable-web-security || echo "Checking test output..."
 
 fail() {
     echo -e "\nTests output:\n"
