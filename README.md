@@ -44,11 +44,11 @@ mocha bundle.js
 
 ### Usage in the browser
 
-To run mocha tests in the browser, you can run `yarn test:browser` or `npm run test:browser` in this repo to see an example using the `test/index.html` file.
+To run mocha tests in the browser, you can run `yarn test:browser` or `npm run test:browser` in this repo to see an example using the `test/browser/index.html` file.
 
 ```html
 <script>mocha.setup("bdd");</script>
-<script src="../output/test.js"></script>
+<script src="../../output/test.js"></script>
 <script>mocha.run();</script>
 ```
 
@@ -58,10 +58,10 @@ It's also possible to bundle the test as a module in which case you'll need to u
 <script type="module" src="./index_module.js"></script>
 ```
 
-and to import the test module as shown in the `test/index_module.js` file:
+and to import the test module as shown in the `test/browser/index_module.js` file:
 
 ```javascript
-import { main } from "../output/test_module.js";
+import { main } from "../../output/test_module.js";
 
 mocha.setup("bdd");
 main();
