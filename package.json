@@ -17,7 +17,6 @@
   },
   "devDependencies": {
     "mocha-headless-chrome": "^4.0.0",
-    "parcel": "^2.9.3"
-  },
-  "packageManager": "yarn@4.0.0-rc.47"
+    "parcel": "^2.10.3"
+  }
 }
