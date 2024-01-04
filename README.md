@@ -28,7 +28,12 @@ main = runMocha do
       (1 + 1) `shouldEqual` 2
 ```
 
+See `test/Main.purs` for a more detailed example. The `package.json` scripts in this repo, show a number of usage patterns further detailed below. Note that the example tests contain 2 passing tests, a pending test and 2 failing tests, to demonstrate both success and failure.
+
 ### Usage with bundled Purescript
+
+You can run `yarn test:node` or `npm run test:node` in this repo to see an example.
+
 If you bundle your compiled PureScript it can be run with `mocha bundle.js` or
 using Karma and [karma-mocha](https://github.com/karma-runner/karma-mocha).
 
@@ -38,51 +43,36 @@ mocha bundle.js
 ```
 
 ### Usage in the browser
-If you want to mix in Purescript tests with existing Javascript (or
-Coffeescript) Mocha tests running in the browser, you'll need to import the file
-and call the function exported by your Purescript test. E.g. combining the
-example from [Running Mocha in the
-Browser](https://mochajs.org/#running-mocha-in-the-browser) with the above
-Purscript spec, you'll need:
+
+To run mocha tests in the browser, you can run `yarn test:browser` or `npm run test:browser` in this repo to see an example using the `test/browser/index.html` file.
 
 ```html
-<!-- test/index.html -->
-...
-  <script>mocha.setup('bdd')</script>
-  <script src="all_tests.js"></script>
-  <script>
-    mocha.checkLeaks();
-    mocha.globals(['jQuery']);
-    mocha.run();
-  </script>
-...
+<script>mocha.setup("bdd");</script>
+<script src="../../output/test.js"></script>
+<script>mocha.run();</script>
 ```
+
+It's also possible to bundle the test as a module in which case you'll need to use `type="module"`:
+
+```html
+<script type="module" src="./index_module.js"></script>
+```
+
+and to import the test module as shown in the `test/browser/index_module.js` file:
 
 ```javascript
-// all_tests.js
-require('test.array.js');               // Javascript specs load when the the file is parsed.
-require('test.object.js');
-require('test.xhr.js');
+import { main } from "../../output/test_module.js";
 
-{main} = require('my_purescript_spec');
-main();                                 // Purescript specs load when the function is called.
-```
-
-### Usage with Spago and Parcel
-
-With `spago` and `parcel-bundler`, and the above `test/index.html` you can build tests, and run them on node and browsers with the following entries in your `package.json`
-```json
-...
-  "scripts": {
-    "test:build": "spago bundle-app --main Test.Main --to ./output/test.js",
-    "test:watch": "spago bundle-app --watch --main Test.Main --to ./output/test.js --then \"npm run -s test:node\"",
-    "test:node": "mocha ./output/test.js",
-    "test:browser": "parcel test/index.html --open"
-  },
-...
+mocha.setup("bdd");
+main();
+mocha.run();
 ```
 
 Running `npm run test:watch` in one terminal window and `npm run test:browser` in another will watch purescript source and tests files and automatically run node and browser tests.
+
+### Usage with headless browser 
+
+You can run `yarn test:headless` or `npm run test:headless` in this repo to see an example using the `test/index.html` file together with `mocha-headless-chrome`. Note that we need to disable-web-security in chromium to allow cross-origin requests.
 
 ## API Documentation
 

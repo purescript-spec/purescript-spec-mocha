@@ -2,7 +2,7 @@ module Test.Spec.Mocha (runMocha) where
 
 import Prelude
 
-import Data.Either (either)
+import Data.Either (Either(..), either)
 import Data.Foldable (traverse_)
 import Data.Maybe (Maybe(..))
 import Effect (Effect)
@@ -22,6 +22,12 @@ foreign import mochaPending
    :: String
    -> Effect Unit
 
+foreign import mochaDescribe
+  :: Boolean
+  -> String
+  -> Effect Unit
+  -> Effect Unit
+
 registerGroup
   :: ∀ m
    . Tree String m (Item Aff Unit)
@@ -35,6 +41,9 @@ registerGroup tree =
             runAff_ (either onError (const onSuccess)) (example (\a -> a unit))
     Leaf name Nothing ->
       mochaPending name
+    Node (Left a) t ->
+      mochaDescribe false a $
+        traverse_ registerGroup t
     Node _ t ->
       traverse_ registerGroup t
 

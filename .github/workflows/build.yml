@@ -24,3 +24,6 @@ jobs:
 
       - name: Build and test project
         run: ./run_tests.sh
+
+      - name: Build and test in headless browser
+        run: ./run_headless_tests.sh
