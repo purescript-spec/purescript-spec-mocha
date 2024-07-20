@@ -21,4 +21,3 @@ package:
   - spec
   bundle:
     module: Test.Main
-    outfile: output/bundle.js
