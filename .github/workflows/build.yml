@@ -16,7 +16,7 @@ jobs:
           node-version: "22"
 
       - name: Install
-        run: npm cache clean --force && npm install
+        run: npm cache clean --force && npm install --no-package-lock
 
       - name: Build
         run: npx spago build
