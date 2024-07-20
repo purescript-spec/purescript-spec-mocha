@@ -38,7 +38,7 @@ If you bundle your compiled PureScript it can be run with `mocha bundle.js` or
 using Karma and [karma-mocha](https://github.com/karma-runner/karma-mocha).
 
 ```bash
-spago bundle-app --main Test.Main --to bundle.js
+spago bundle --outfile bundle.js
 mocha bundle.js
 ```
 
@@ -70,7 +70,7 @@ mocha.run();
 
 Running `npm run test:watch` in one terminal window and `npm run test:browser` in another will watch purescript source and tests files and automatically run node and browser tests.
 
-### Usage with headless browser 
+### Usage with headless browser
 
 You can run `yarn test:headless` or `npm run test:headless` in this repo to see an example using the `test/index.html` file together with `mocha-headless-chrome`. Note that we need to disable-web-security in chromium to allow cross-origin requests.
 

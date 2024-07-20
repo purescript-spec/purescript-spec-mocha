@@ -13,7 +13,7 @@
     "test:browser:module": "$npm_execpath run test:build:module && parcel test/browser/index_module.html --open"
   },
   "dependencies": {
-    "esbuild": "^0.18.15",
+    "esbuild": "^0.23.0",
     "mocha": "^9.2.0",
     "purescript": "^0.15.14",
     "spago": "^0.93.37"
