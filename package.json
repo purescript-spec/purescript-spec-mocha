@@ -1,16 +1,7 @@
 {
   "engines": {
-    "node": "22.5",
+    "node": "22.4",
     "npm": "10.8"
-  },
-  "scripts": {
-    "test:build": "spago bundle-app --main Test.Main --to ./output/test.js",
-    "test:build:module": "spago bundle-module --main Test.Main --to ./output/test_module.js",
-    "test:watch": "spago bundle-app --watch --main Test.Main --to ./output/test.js --then \"mocha ./output/test.js\"",
-    "test:node": "$npm_execpath run test:build && mocha ./output/test.js",
-    "test:headless": "$npm_execpath run test:build && ./run_headless_tests.sh",
-    "test:browser": "$npm_execpath run test:build && parcel test/browser/index.html --open",
-    "test:browser:module": "$npm_execpath run test:build:module && parcel test/browser/index_module.html --open"
   },
   "dependencies": {
     "esbuild": "^0.23.0",
