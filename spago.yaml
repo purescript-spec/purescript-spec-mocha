@@ -6,7 +6,7 @@ package:
   name: spec-mocha
   publish:
     license: MIT
-    version: 7.6.1
+    version: 5.1.1
     location:
       githubOwner: purescript-spec
       githubRepo: purescript-spec-mocha
