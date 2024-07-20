@@ -3,14 +3,13 @@ workspace:
     spec-mocha:
       path: ./
       dependencies:
-        - aff
-        - datetime
-        - effect
-        - either
-        - foldable-traversable
-        - maybe
-        - prelude
-        - spec
+        - aff: ">=7.1.0 <8.0.0"
+        - effect: ">=4.0.0 <5.0.0"
+        - either: ">=6.1.0 <7.0.0"
+        - foldable-traversable: ">=6.0.0 <7.0.0"
+        - maybe: ">=6.0.0 <7.0.0"
+        - prelude: ">=6.0.1 <7.0.0"
+        - spec: ">=7.6.0 <8.0.0"
       test_dependencies: []
       build_plan:
         - aff
@@ -565,7 +564,9 @@ workspace:
       yoga-tree: 1.0.0
       z3: 0.0.2
       zipperarray: 2.0.0
-  extra_packages: {}
+  extra_packages:
+    parallel: 6.0.0
+    spec: 7.6.1
 packages:
   aff:
     type: registry
@@ -954,8 +955,8 @@ packages:
       - prelude
   parallel:
     type: registry
-    version: 7.0.0
-    integrity: sha256-gUC9i4Txnx9K9RcMLsjujbwZz6BB1bnE2MLvw4GIw5o=
+    version: 6.0.0
+    integrity: sha256-VJbkGD0rAKX+NUEeBJbYJ78bEKaZbgow+QwQEfPB6ko=
     dependencies:
       - control
       - effect
@@ -1018,8 +1019,8 @@ packages:
       - unsafe-coerce
   spec:
     type: registry
-    version: 7.6.0
-    integrity: sha256-+merGdQbL9zWONbnt8S8J9afGJ59MQqGtS0qSd3yu4I=
+    version: 7.6.1
+    integrity: sha256-VycY2SgN8rHZGqcMqZEiTh9OdCw40CUMX2pCoSUJ/zY=
     dependencies:
       - aff
       - ansi
