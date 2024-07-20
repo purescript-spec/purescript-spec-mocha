@@ -11,16 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.4"
+
       - name: Install & build
         run: npm install && npx spago build
-
-      - name: Cache PureScript dependencies
-        uses: actions/cache@v2
-        with:
-          key: ${{ runner.os }}-spago-${{ hashFiles('**/*.dhall') }}
-          path: |
-            .spago
-            output
 
       - name: Build and test project
         run: ./run_tests.sh

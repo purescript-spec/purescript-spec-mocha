@@ -1,0 +1,23 @@
+workspace:
+  packageSet:
+    registry: 55.1.0
+
+package:
+  name: spec-mocha
+  publish:
+    license: MIT
+    version: 5.1.1
+    location:
+      githubOwner: purescript-spec
+      githubRepo: purescript-spec-mocha
+  dependencies:
+  - aff
+  - datetime
+  - effect
+  - either
+  - foldable-traversable
+  - maybe
+  - prelude
+  - spec
+  bundle:
+    module: Test.Main

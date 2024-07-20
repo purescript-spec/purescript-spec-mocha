@@ -2,7 +2,7 @@
 
 set -e
 
-npx spago bundle-app --main Test.Main --to output/bundle.js
+npx spago bundle --outfile output/bundle.js
 
 $(npx mocha output/bundle.js > output/test-output.txt) || echo "Checking test output..."
 
