@@ -13,11 +13,12 @@ spago install spec-mocha
 ```
 
 ```purescript
-module Main where
+module Test.Main where
 
 import Prelude
-import Control.Monad.Eff (Eff)
-import Test.Spec (SpecEffects, describe, it)
+
+import Effect (Effect)
+import Test.Spec (describe, it)
 import Test.Spec.Assertions (shouldEqual)
 import Test.Spec.Mocha (runMocha)
 
